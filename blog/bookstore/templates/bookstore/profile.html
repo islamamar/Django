@@ -1,0 +1,59 @@
+{% extends "bookstore/main.html" %}
+
+
+{% block content %}
+<h1> profile page</h1>   
+<div class="container">
+    <div class="row">
+      <div class="col">
+        Total Orders: <span class="badge text-bg-primary">  {{t_orders}} </span>
+      
+      </div>
+      <div class="col">
+        In Proress : <span class="badge text-bg-success">   {{In_order}}</span>
+     
+      </div>
+      <div class="col">
+       Delivered Ordered: <span class="badge text-bg-danger">   {{d_order }}</span> 
+    
+      </div>
+      <div class="col">
+        out of orders : <span class="badge text-bg-warning">    {{out_order}}</span>
+    
+      </div> 
+      <div class="col">
+        Pending orders : <span class="badge text-bg-warning">    {{P_order}}</span>
+    </div>
+  
+    </div>
+  </div>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">book </th>
+        <th scope="col">customer </th>
+        <th scope="col">status </th>
+        <th scope="col">tag </th>   
+        
+        {% comment %} <th scope="col">date_created </th>  {% endcomment %}
+       
+      </tr>
+    </thead>
+    <tbody> 
+        {% for item in orders  %}
+      <tr>
+        <th >{{item.book}}</th>
+        <td>{{item.customer}}</td>
+        <td>{{item.status}}</td> 
+        {% for item2 in item.tag.all  %}
+        <td>{{item2.name}}</td>   
+        {% endfor %}         
+   
+        {% comment %} <td>{{item.date_created}}</td> {% endcomment %}
+      </tr>  
+      {% endfor %}    
+    </tbody>
+  </table>
+{% endblock content %}

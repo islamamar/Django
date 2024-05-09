@@ -1,0 +1,20 @@
+{% extends "bookstore/main.html" %} 
+{% load static %}
+
+
+
+{% block content %} 
+
+<h1>  are you sure you want to delete this order ??   </h1>
+
+<form action="" method="POST">  
+    {% csrf_token %} 
+
+    <a href="{% url "home" %}"> Return </a>
+    <button type="submit" class="btn btn-primary">Yes</button>
+  </form>  
+
+{% endblock content %}
+
+
+

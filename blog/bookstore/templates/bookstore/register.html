@@ -1,0 +1,28 @@
+
+
+
+
+
+<form action="" method="POST">  
+    {% csrf_token %}
+    {{form.username.label}} 
+    {{form.username}}  
+    <br>
+    {{form.email.label}} 
+    {{form.email}} 
+    <br>
+    {{form.password.label}} 
+    {{form.password}}     
+    <br>
+    {{form.password1.label}} 
+    {{form.password1}} 
+    <br>
+    {{form.password2.label}}
+    {{form.password2}} 
+    <br>
+    {{form.date_joined.label}}
+    {{form.date_joined}} 
+ 
+    <button type="submit" class="btn btn-primary">Submit</button> 
+    {{form.errors}}
+  </form>  

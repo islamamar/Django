@@ -1,0 +1,24 @@
+{% extends "bookstore/main.html" %} 
+{% block content %}
+ <h1> Profile information Page   </h1>  
+
+ <div class="card" style="width: 18rem;">
+    <img src="{{request.user.customer.avatar.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <form action="" method="POST" enctype="multipart/form-data">  
+ 
+            {% csrf_token %} 
+            {{form.as_p}}
+        
+            <button type="submit" class="btn btn-primary">Submit</button>
+        
+        
+         </form>
+    </div>
+  </div>
+
+
+
+
+
+{% endblock content %}

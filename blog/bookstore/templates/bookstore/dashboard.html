@@ -1,0 +1,113 @@
+{% extends "bookstore/main.html" %}
+
+
+{% block content %}
+<h1 class= "px-5"> Daashboard page</h1>    
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      Total Orders: <span class="badge text-bg-primary">  {{t_orders}} </span>
+    
+    </div>
+    <div class="col">
+      In Proress : <span class="badge text-bg-success">   {{In_order}}</span>
+   
+    </div>
+    <div class="col">
+     Delivered Ordered: <span class="badge text-bg-danger">   {{d_order }}</span> 
+  
+    </div>
+    <div class="col">
+      out of orders : <span class="badge text-bg-warning">    {{out_order}}</span>
+  
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="container mt-5">
+    <div class="row">
+      <div class="col"> 
+        <div class="card" >
+           
+            <div class="card-body">
+              <h5 class="card-title">Customers</h5> 
+              <h6 class="card-subtitle mb-2 text-body-secondary">
+                <a class="btn btn-success" href="#" role="button">Create</a>
+              </h6>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">name </th>
+                    <th scope="col">email</th>
+                    <th scope="col">age </th> 
+                    <th scope="col">Details </th> 
+                    {% comment %} <th scope="col">date_created </th> {% endcomment %}
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in customers %}
+                  <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.age}}</td> 
+                    <td><a href="{% url "customer" item.id %}"><i class="fa-solid fa-eye"></i></a></td> 
+                    {% comment %} <td>{{item.date_created}}</td> {% endcomment %}
+                  </tr>     
+                  {% endfor %} 
+                </tbody>
+              </table>
+          </div>
+            </div>
+          </div>
+       
+      <div class="col">
+        <div class="card">           
+            <div class="card-body">
+              <h5 class="card-title">Orders</h5> 
+              <h6 class="card-subtitle mb-2 text-body-secondary">
+                <a class="btn btn-success" href="{% url "create" %}" role="button">Create</a>
+              </h6>
+              
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">book </th>
+                <th scope="col">customer </th>
+                <th scope="col">status </th>
+                <th scope="col">tag </th>   
+                
+                {% comment %} <th scope="col">date_created </th>  {% endcomment %}
+               
+              </tr>
+            </thead>
+            <tbody> 
+                {% for item in orders  %}
+              <tr>
+                <th >{{item.book}}</th>
+                <td>{{item.customer}}</td>
+                <td>{{item.status}}</td> 
+                {% for item2 in item.tag.all  %}
+                <td>{{item2.name}}</td>   
+                {% endfor %}
+                <td><a href="{% url "update" item.id %}"> <i class="fa-solid fa-pen"></i></a>
+                    <a href="{% url "delete" item.id %}"><i class="fa-solid fa-trash text-danger"></i></a> </td> 
+                   
+           
+                {% comment %} <td>{{item.date_created}}</td> {% endcomment %}
+              </tr>  
+              {% endfor %}    
+            </tbody>
+          </table>
+            </div>
+          </div>        
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock content %}

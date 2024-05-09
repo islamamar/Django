@@ -1,0 +1,64 @@
+{% extends "bookstore/main.html" %}
+
+
+{% block content %}
+<h1> customer page</h1>   
+
+<div class="container">
+  <div class="row">
+    <div class="col">{{customer.name}} </div>
+    <div class="col">{{customer.age}}</div>
+    <div class="col">{{customer.email}}</div>
+    <div class="col">{{customer.phone}} </div>
+  </div>
+</div> 
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+    <form action="" method="GET">  
+        {% csrf_token %}
+        {{searchFilter.form}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>  
+    </div>
+  </div>
+</div>
+
+
+<a href="{% url "createOrder" customer.id %}"> Create Orders  </a>
+
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">book </th>
+        <th scope="col">customer </th>
+        <th scope="col">status </th>
+        <th scope="col">tag </th>   
+        
+        {% comment %} <th scope="col">date_created </th>  {% endcomment %}
+       
+      </tr>
+    </thead>
+    <tbody> 
+        {% for item in orders  %}
+      <tr>
+        <th >{{item.book}}</th>
+        <td>{{item.customer}}</td>
+        <td>{{item.status}}</td> 
+        {% for item2 in item.tag.all  %}
+        <td>{{item2.name}}</td>   
+        {% endfor %}
+        <td><a href="#"> <i class="fa-solid fa-pen"></i></a>
+            <a href="#"><i class="fa-solid fa-trash text-danger"></i></a> </td> 
+           
+   
+        {% comment %} <td>{{item.date_created}}</td> {% endcomment %}
+      </tr>  
+      {% endfor %}    
+    </tbody>
+  </table>
+{% endblock content %}
